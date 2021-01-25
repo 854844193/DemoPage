@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.dice {
+  width: 22.875rem;
+  height: 22.875rem;
+  background-image: url(../imgs/dice.webp);
+  background-position: 0% 100%;
+  animation: dice steps(5) 0.2s infinite;
+}
+.dice::before {
+  content: "?";
+  width: inherit;
+  height: inherit;
+  font-size: 300px;
+  font-weight: 600;
+  font-family: Helvetica;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3.75rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(1.25rem);
+  -webkit-backdrop-filter: blur(1.25rem);
+}
+#dice {
+  display: none;
+}
+#dice:checked + label .dice {
+  animation-play-state: paused;
+}
+#dice:checked + label .dice::before {
+  display: none;
+}
+@keyframes dice {
+  to {
+    background-position: 100% 100%;
+  }
+}
