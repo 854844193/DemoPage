@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>echarts-仪表盘</title>
+    <script src="./lib/echarts.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="charts" style="width: 1000px; height: 600px"></div>
+    <script>
+      var myEcharts = echarts.init(document.getElementById("charts"));
+      var options = {
+        series: [
+          {
+            type: "gauge",
+            data: [
+              {
+                value: 88,
+                itemStyle: {
+                  color: "pink",
+                },
+              },
+              {
+                value: 95,
+                itemStyle: {
+                  color: "red",
+                },
+              },
+            ],
+            min: 50,
+          },
+        ],
+      };
+      myEcharts.setOption(options);
+    </script>
+  </body>
+</html>

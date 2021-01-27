@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>echarts折线图</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="charts" style="width: 1000px; height: 600px"></div>
+    <script>
+      var myEcharts = echarts.init(document.getElementById("charts"));
+      var xData = [
+        "1月",
+        "2月",
+        "3月",
+        "4月",
+        "5月",
+        "6月",
+        "7月",
+        "8月",
+        "9月",
+        "10月",
+        "11月",
+        "12月",
+      ];
+      var yData2 = [
+        "1890",
+        "2230",
+        "2090",
+        "1960",
+        "1832",
+        "2320",
+        "2320",
+        "2600",
+        "2398",
+        "2495",
+        "2199",
+        "2089",
+      ];
+      var yData1 = [
+        "2895",
+        "3250",
+        "3090",
+        "2901",
+        "2823",
+        "3232",
+        "3302",
+        "3560",
+        "3450",
+        "3561",
+        "3256",
+        "3106",
+      ];
+      var text_label = {
+        show: true,
+        position: "right",
+      };
+      var mark_point = {
+        data: [
+          {
+            type: "max",
+            name: "最高销量",
+          },
+          {
+            type: "min",
+            name: "最低销量",
+          },
+        ],
+      };
+      var mark_line = {
+        data: [
+          {
+            type: "average",
+            name: "平均销量",
+          },
+        ],
+      };
+      var mark_area = {
+        // data: [
+        //   [{ xAxis: "3月" }, { xAxis: "4月" }],
+        //   [{ xAxis: "8月" }, { xAxis: "9月" }],
+        // ],
+      };
+      var options = {
+        title: {
+          text: "商品销量统计",
+          left: "20",
+          top: "10",
+          textStyle: {
+            color: "#ff6a00",
+            fontFamily: "sans-serif",
+            fontSize: "24",
+          },
+        },
+        legend: {
+          data: ["电子产品", "服饰"],
+          top: "20",
+        },
+        tooltip: {
+          trigger: "item",
+          triggerOn: "mousemove",
+          formatter: "{b}的销量:{c}",
+          // formatter: function (arg) {
+          //   return arg.name + "的" + arg.seriesName + "成绩:" + arg.value;
+          // },
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {},
+            restore: {},
+            dataView: {
+              readOnly: true,
+            },
+            magicType: {
+              type: ["line", "bar"],
+            },
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: xData,
+          boundaryGap: false, //脱离0值
+        },
+        yAxis: {
+          type: "value",
+          scale: true,
+        },
+        series: [
+          {
+            name: "电子产品",
+            type: "line",
+            data: yData1,
+            stack: "all",
+            areaStyle: {},
+            markPoint: mark_point,
+            // markLine: mark_line,
+            // markArea: mark_area,
+            label: text_label,
+            smooth: true,
+          },
+          {
+            name: "服饰",
+            type: "line",
+            data: yData2,
+            stack: "all",
+            areaStyle: {},
+            markPoint: mark_point,
+            // markLine: mark_line,
+            // markArea: mark_area,
+            label: text_label,
+            smooth: true,
+          },
+        ],
+      };
+      myEcharts.setOption(options);
+    </script>
+  </body>
+</html>

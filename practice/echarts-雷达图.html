@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>echarts-雷达图</title>
+    <script src="./lib/echarts.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="charts" style="width: 1000px; height: 600px"></div>
+    <script>
+      var myEcharts = echarts.init(document.getElementById("charts"));
+      var maxData = [
+        {
+          name: "易用性",
+          max: 100,
+        },
+        {
+          name: "功能",
+          max: 100,
+        },
+        {
+          name: "拍照",
+          max: 100,
+        },
+        {
+          name: "跑分",
+          max: 100,
+        },
+        {
+          name: "续航",
+          max: 100,
+        },
+      ];
+      var options = {
+        radar: {
+          indicator: maxData,
+          shape: "polygon",
+        },
+        series: [
+          {
+            type: "radar",
+            label: {
+              show: true,
+            },
+            areaStyle: {},
+            data: [
+              {
+                name: "华为手机",
+                value: [80, 90, 80, 82, 90],
+              },
+              {
+                name: "oppo手机",
+                value: [70, 82, 75, 70, 78],
+              },
+            ],
+          },
+        ],
+      };
+      myEcharts.setOption(options);
+    </script>
+  </body>
+</html>

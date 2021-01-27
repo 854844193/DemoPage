@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>echarts散点图</title>
+    <script src="./lib/echarts.min.js"></script>
+    <script src="./lib/data.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="charts" style="width: 1000px; height: 600px"></div>
+    <script>
+      var myEcharts = echarts.init(document.getElementById("charts"));
+      var axisData = [];
+      data.forEach((item) => {
+        let weight = item.weight;
+        let height = item.height;
+        let everyArr = [height, weight];
+        axisData.push(everyArr);
+      });
+      var options = {
+        title: {
+          text: "身高体重",
+          left: "20",
+          top: "10",
+          textStyle: {
+            fontFamily: "sans-serif",
+            fontSize: "24",
+          },
+        },
+        tooltip: {
+          trigger: "item",
+          triggerOn: "mousemove",
+          // formatter: "{b}的销量:{c}",
+          formatter: function (arg) {
+            // console.log(arg);
+            return `身高：${arg.data[0]}cm <br/>体重：${arg.data[1]}kg `;
+          },
+        },
+
+        xAxis: {
+          type: "value",
+          scale: true,
+        },
+        yAxis: {
+          type: "value",
+          scale: true,
+        },
+        series: [
+          {
+            type: "effectScatter",
+            showEffectOn: "emphasis", //render
+            rippleEffect: {
+              scale: 5,
+            },
+            data: axisData,
+            symbolSize: function (arg) {
+              let height = arg[0];
+              let weight = arg[1];
+              let size = height - weight;
+              if (size < 100) return 20;
+              return 10;
+            },
+            itemStyle: {
+              color: function (arg) {
+                let height = arg.data[0];
+                let weight = arg.data[1];
+                let size = height - weight;
+                if (size < 100) return "#E2382D";
+                return "#50CF4A";
+              },
+            },
+          },
+        ],
+      };
+      myEcharts.setOption(options);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>echatts-饼图</title>
+    <script src="./lib/echarts.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="charts" style="width: 1000px; height: 600px"></div>
+    <script>
+      var myEcharts = echarts.init(document.getElementById("charts"));
+      var pieData = [
+        {
+          name: "淘宝",
+          value: 11231,
+        },
+        {
+          name: "京东",
+          value: 22673,
+        },
+        {
+          name: "唯品会",
+          value: 6123,
+        },
+        {
+          name: "1号店",
+          value: 8989,
+        },
+        {
+          name: "聚美优品",
+          value: 6700,
+        },
+      ];
+      var options = {
+        title: {
+          text: "网购平台支出占比",
+          left: "20",
+          top: "10",
+          textStyle: {
+            color: "#ff6a00",
+            fontFamily: "sans-serif",
+            fontSize: "24",
+          },
+        },
+        tooltip: {
+          trigger: "item",
+          triggerOn: "mousemove",
+        },
+        series: [
+          {
+            type: "pie",
+            data: pieData,
+            // radius: 100,
+            // radius: ["50%", "70%"],
+            label: {
+              show: true,
+              formatter: function (arg) {
+                return (
+                  arg.name + "支出" + arg.value + "元\n" + arg.percent + "%"
+                );
+              },
+            },
+            roseType: "radius", //南丁格尔图
+            selectedMode: "single",
+            // selectedMode: "multiple",
+            // selectedOffset: 30,
+          },
+        ],
+      };
+      myEcharts.setOption(options);
+    </script>
+  </body>
+</html>

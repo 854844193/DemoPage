@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>array下标判断法</title>
+  </head>
+  <body>
+    <h1></h1>
+    <div style="font-size: 32px; font-weight: 600; color: #ff6a00"></div>
+
+    <script>
+      let array = ["a", "b", "c", "d", "e", "b", "aa"];
+      function unique(arr) {
+        var n = [arr[0]];
+        for (var i = 1; i < arr.length; i++) {
+          if (arr.indexOf(arr[i]) == i) n.push(arr[i]);
+        }
+        return n;
+      }
+      let ptext = array;
+      let text = unique(array);
+
+      document.querySelector("h1").innerText = ptext;
+      document.querySelector("div").innerText = text;
+    </script>
+  </body>
+</html>

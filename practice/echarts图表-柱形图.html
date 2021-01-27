@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>echarts柱形图</title>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="charts" style="width: 1000px; height: 600px"></div>
+    <script>
+      var myEcharts = echarts.init(document.getElementById("charts"));
+      var members = ["小明", "小红", "晓东", "小刘", "小张", "小李", "小飞"];
+      var nameArr = ["语文", "数学", "英语"];
+      var Chinese = ["88", "92", "87", "94", "80", "78", "96"];
+      var Maths = ["100", "92", "85", "91", "100", "95", "88"];
+      var English = ["88", "66", "71", "79", "85", "95", "100"];
+      var text_label = {
+        show: true,
+        position: "inside",
+      };
+      var mark_point = {
+        data: [
+          {
+            type: "max",
+            name: "最高分",
+          },
+          {
+            type: "min",
+            name: "最低分",
+          },
+        ],
+      };
+      var mark_line = {
+        data: [
+          {
+            type: "average",
+            name: "平均分",
+          },
+        ],
+      };
+      var options = {
+        title: {
+          text: "成绩统计",
+          left: "20",
+          top: "10",
+          link: "https://search.bilibili.com/",
+          target: "blank",
+          textStyle: {
+            color: "#ff6a00",
+            fontFamily: "sans-serif",
+            fontSize: "24",
+          },
+        },
+        legend: {
+          data: nameArr,
+          top: "20",
+        },
+        tooltip: {
+          trigger: "item",
+          triggerOn: "mousemove",
+          formatter: "{b}的{a}成绩:{c}",
+          // formatter: function (arg) {
+          //   return arg.name + "的" + arg.seriesName + "成绩:" + arg.value;
+          // },
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {},
+            restore: {},
+            dataView: {
+              readOnly: true,
+            },
+            magicType: {
+              type: ["line", "bar"],
+            },
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: members,
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            name: nameArr[0],
+            type: "bar",
+            data: Chinese,
+            markPoint: mark_point,
+            markLine: mark_line,
+            label: text_label,
+          },
+          {
+            name: nameArr[1],
+            type: "bar",
+            data: Maths,
+            markPoint: mark_point,
+            markLine: mark_line,
+            label: text_label,
+          },
+          {
+            name: nameArr[2],
+            type: "bar",
+            data: English,
+            markPoint: mark_point,
+            markLine: mark_line,
+            label: text_label,
+          },
+        ],
+      };
+      myEcharts.setOption(options);
+    </script>
+  </body>
+</html>

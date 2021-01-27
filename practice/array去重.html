@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>array去重</title>
+  </head>
+  <body>
+    <h1></h1>
+    <div style="font-size: 32px; font-weight: 600; color: #ff6a00"></div>
+    <script>
+      let array = ["a", "b", "c", "d", "e", "a", "d", "s", "aa", "b"];
+      //兼容性处理
+      if (!Array.prototype.indexOf) {
+        Array.prototype.indexOf = function (item) {
+          var result = -1,
+            a_item = null;
+          if (this.length == 0) return result;
+          for (var i = 0; i < this.length; i++) {
+            a_item = this[i];
+            if (a_item === item) {
+              result = i;
+              break;
+            }
+          }
+          return result;
+        };
+      }
+
+      // 数组去重
+      function unique(arr) {
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+          if (newArr.indexOf(arr[i]) == -1) newArr.push(arr[i]);
+        }
+        return newArr;
+      }
+
+      let ptext = array;
+      let text = unique(array);
+
+      document.querySelector("h1").innerText = ptext;
+      document.querySelector("div").innerText = text;
+    </script>
+  </body>
+</html>
